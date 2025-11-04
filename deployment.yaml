@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-monitor
+  template:
+    metadata:
+      labels:
+        app: flask-monitor
+    spec:
+      containers:
+        - name: web
+          image: myusername/my-flask-app:latest  # push to registry or use local minikube image
+          ports:
+            - containerPort: 5000
